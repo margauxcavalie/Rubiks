@@ -37,6 +37,11 @@ namespace rubik
         Piece find_piece(Vector3D<int> coords) const;
         Piece find_piece(Vector3D<Color> colors) const;
 
+        void do_move(Move move);
+        void do_moves(std::vector<Move> moves);
+        void undo_move(Move move);
+        void undo_moves(std::vector<Move> moves);
+
     private:
         std::vector<Piece> pieces_;
     };

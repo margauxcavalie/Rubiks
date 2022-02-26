@@ -12,8 +12,6 @@ namespace rubik
 {
     // FIXME: Uncomment each test once the corresponding step is implemented
 
-    /*
-
     TEST(syntax_movements, matrix3D_class)
     {
         std::array<std::array<int, 3>, 3> values = {
@@ -61,7 +59,5 @@ namespace rubik
 
         parse_moves("U' R2 F x");
     }
-
-    */
 
 } // namespace rubik

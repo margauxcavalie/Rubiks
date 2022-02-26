@@ -1,8 +1,11 @@
 #pragma once
 
+#include <array>
 #include <system_error>
 
 #include "color.hh"
+#include "matrix3D.hh"
+#include "move.hh"
 #include "vector3D.hh"
 
 namespace rubik
@@ -29,6 +32,9 @@ namespace rubik
         bool operator>(const Piece& other);
         bool operator<=(const Piece& other);
         bool operator>=(const Piece& other);
+
+        void do_move(Face face, Direction dir);
+        void do_move(Axis axis, Direction dir);
     };
 
     inline std::ostream& operator<<(std::ostream& os, const Piece& p)

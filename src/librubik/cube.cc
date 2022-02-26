@@ -222,4 +222,24 @@ namespace rubik
         throw std::invalid_argument("Piece from colors not found");
     }
 
+    void Cube::do_move(Move move)
+    {
+        move = move;
+    }
+
+    void Cube::do_moves(std::vector<Move> moves)
+    {
+        moves = moves;
+    }
+
+    void Cube::undo_move(Move move)
+    {
+        move = move;
+    }
+
+    void Cube::undo_moves(std::vector<Move> moves)
+    {
+        moves = moves;
+    }
+
 } // namespace rubik
