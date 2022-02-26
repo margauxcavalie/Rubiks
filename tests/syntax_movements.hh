@@ -54,10 +54,16 @@ namespace rubik
         Cube cube;
         cube.do_move(move);
         cube.undo_move(move);
+
         cube.do_moves({ move });
         cube.undo_moves({ move });
 
         parse_moves("U' R2 F x");
+
+        Cube cube2 = Cube();
+        cube2.do_moves(parse_moves(
+            "F' D' R2 x L' U B R F U2 F2 L2 L y2 F' B2 U2 D B' z'"));
+        std::cout << cube2 << "\n";
     }
 
 } // namespace rubik

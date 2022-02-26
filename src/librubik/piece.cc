@@ -1,5 +1,7 @@
 #include "piece.hh"
 
+#include <array>
+
 namespace rubik
 {
     Piece::Piece(Vector3D<int> coordonates, Vector3D<Color> cols)
@@ -106,37 +108,32 @@ namespace rubik
         Matrix3D<int> my_matrix = Matrix3D<int>(R);
         if (face == Face::FRONT || face == Face::RIGHT || face == Face::UP)
             my_matrix.transpose();
+
         if (dir == Direction::ANTI_CLOCKWISE)
             my_matrix.transpose();
         Vector3D<int> new_coordonates = my_matrix * this->coords;
 
         // Colors //
-        Vector3D<Color> new_colors =
-            Vector3D<Color>(Color::NONE, Color::NONE, Color::NONE);
         switch (face)
         {
         case Face::UP:
         case Face::DOWN: {
-            new_colors.x = this->colors.y;
-            new_colors.y = this->colors.x;
+            std::swap(this->colors.x, this->colors.y);
             break;
         }
         case Face::LEFT:
         case Face::RIGHT: {
-            new_colors.x = this->colors.z;
-            new_colors.z = this->colors.x;
+            std::swap(this->colors.x, this->colors.z);
             break;
         }
         case Face::FRONT:
         case Face::BACK: {
-            new_colors.y = this->colors.z;
-            new_colors.z = this->colors.y;
+            std::swap(this->colors.z, this->colors.y);
             break;
         }
         }
 
         this->coords = new_coordonates;
-        this->colors = new_colors;
     }
 
     void Piece::do_move(Axis axis, Direction dir)

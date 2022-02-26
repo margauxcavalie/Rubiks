@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "solver.hh"
 
 // BONUS: Orient Last Layer

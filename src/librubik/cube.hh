@@ -1,6 +1,7 @@
 #pragma once
 
 #include <istream>
+#include <variant>
 #include <vector>
 
 #include "piece.hh"

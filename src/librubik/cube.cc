@@ -224,22 +224,140 @@ namespace rubik
 
     void Cube::do_move(Move move)
     {
-        move = move;
+        int type = move.mvt.index();
+        if (type == 0) // face
+        {
+            switch (std::get<Face>(move.mvt))
+            {
+            case Face::UP: // z == 1
+            {
+                for (size_t i = 0; i < this->pieces_.size(); i++)
+                {
+                    if (this->pieces_[i].coords.z == 1)
+                    {
+                        this->pieces_[i].do_move(std::get<Face>(move.mvt),
+                                                 move.dir);
+                        if (move.is_double)
+                            this->pieces_[i].do_move(std::get<Face>(move.mvt),
+                                                     move.dir);
+                    }
+                }
+                break;
+            }
+            case Face::DOWN: // z == -1
+            {
+                for (size_t i = 0; i < this->pieces_.size(); i++)
+                {
+                    if (this->pieces_[i].coords.z == -1)
+                    {
+                        this->pieces_[i].do_move(std::get<Face>(move.mvt),
+                                                 move.dir);
+                        if (move.is_double)
+                            this->pieces_[i].do_move(std::get<Face>(move.mvt),
+                                                     move.dir);
+                    }
+                }
+                break;
+            }
+            case Face::LEFT: // y == -1
+            {
+                for (size_t i = 0; i < this->pieces_.size(); i++)
+                {
+                    if (this->pieces_[i].coords.y == -1)
+                    {
+                        this->pieces_[i].do_move(std::get<Face>(move.mvt),
+                                                 move.dir);
+                        if (move.is_double)
+                            this->pieces_[i].do_move(std::get<Face>(move.mvt),
+                                                     move.dir);
+                    }
+                }
+                break;
+            }
+            case Face::RIGHT: // y == 1
+            {
+                for (size_t i = 0; i < this->pieces_.size(); i++)
+                {
+                    if (this->pieces_[i].coords.y == 1)
+                    {
+                        this->pieces_[i].do_move(std::get<Face>(move.mvt),
+                                                 move.dir);
+                        if (move.is_double)
+                            this->pieces_[i].do_move(std::get<Face>(move.mvt),
+                                                     move.dir);
+                    }
+                }
+                break;
+            }
+            case Face::FRONT: // x == 1
+            {
+                for (size_t i = 0; i < this->pieces_.size(); i++)
+                {
+                    if (this->pieces_[i].coords.x == 1)
+                    {
+                        this->pieces_[i].do_move(std::get<Face>(move.mvt),
+                                                 move.dir);
+                        if (move.is_double)
+                            this->pieces_[i].do_move(std::get<Face>(move.mvt),
+                                                     move.dir);
+                    }
+                }
+                break;
+            }
+            case Face::BACK: // x == -1
+            {
+                for (size_t i = 0; i < this->pieces_.size(); i++)
+                {
+                    if (this->pieces_[i].coords.x == -1)
+                    {
+                        this->pieces_[i].do_move(std::get<Face>(move.mvt),
+                                                 move.dir);
+                        if (move.is_double)
+                            this->pieces_[i].do_move(std::get<Face>(move.mvt),
+                                                     move.dir);
+                    }
+                }
+                break;
+            }
+            }
+        }
+
+        else // axis
+        {
+            for (size_t i = 0; i < this->pieces_.size(); i++)
+            {
+                this->pieces_[i].do_move(std::get<Axis>(move.mvt), move.dir);
+                if (move.is_double)
+                    this->pieces_[i].do_move(std::get<Axis>(move.mvt),
+                                             move.dir);
+            }
+        }
     }
 
     void Cube::do_moves(std::vector<Move> moves)
     {
-        moves = moves;
+        for (size_t i = 0; i < moves.size(); i++)
+        {
+            this->do_move(moves[i]);
+        }
     }
 
     void Cube::undo_move(Move move)
     {
-        move = move;
+        if (move.dir == Direction::CLOCKWISE)
+            move.dir = Direction::ANTI_CLOCKWISE;
+        else
+            move.dir = Direction::CLOCKWISE;
+
+        this->do_move(move);
     }
 
     void Cube::undo_moves(std::vector<Move> moves)
     {
-        moves = moves;
+        for (int i = moves.size() - 1; i >= 0; i--)
+        {
+            this->undo_move(moves[i]);
+        }
     }
 
 } // namespace rubik
