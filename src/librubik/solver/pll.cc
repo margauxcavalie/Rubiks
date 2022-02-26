@@ -1,6 +1,5 @@
 #include "pll.hh"
 
-
 namespace rubik::solver
 {
     // FIXME

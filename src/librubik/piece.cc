@@ -7,7 +7,7 @@ namespace rubik
         , colors(cols)
     {}
 
-        Piece::Type Piece::get_type()
+    Piece::Type Piece::get_type()
     {
         int number_nones = 0;
         if (this->colors.x == Color::NONE)

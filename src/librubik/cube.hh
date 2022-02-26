@@ -1,5 +1,6 @@
 #pragma once
 
+#include <istream>
 #include <vector>
 
 #include "piece.hh"
@@ -16,6 +17,25 @@ namespace rubik
         {
             return this->pieces_;
         }
+
+        void set_piece(Piece p, int index)
+        {
+            this->pieces_[index] = p;
+        }
+
+        static Cube from_stream(std::istream& is);
+
+        std::vector<Piece>::iterator begin()
+        {
+            return this->pieces_.begin();
+        };
+        std::vector<Piece>::iterator end()
+        {
+            return this->pieces_.end();
+        };
+
+        Piece find_piece(Vector3D<int> coords) const;
+        Piece find_piece(Vector3D<Color> colors) const;
 
     private:
         std::vector<Piece> pieces_;

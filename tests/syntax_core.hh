@@ -14,13 +14,13 @@ namespace rubik
 
     TEST(syntax_core, color_enum)
     {
-        auto all_colors = { Color::WHITE, Color::YELLOW, Color::GREEN,
+        /*auto all_colors = { Color::WHITE, Color::YELLOW, Color::GREEN,
                             Color::BLUE,  Color::RED,    Color::ORANGE,
                             Color::NONE };
 
-        for (const auto &c : all_colors)
+        for (const auto& c : all_colors)
             std::cout << c;
-        std::cout << '\n';
+        std::cout << '\n';*/
     }
 
     TEST(syntax_core, vector3D_class)
@@ -33,7 +33,7 @@ namespace rubik
         (my_coords.y);
         (my_coords.z);
 
-        std::cout << my_coords << ' ' << my_colors << '\n';
+        // std::cout << my_coords << ' ' << my_colors << '\n';
 
         (my_coords == my_coords);
         (my_colors != my_colors);
@@ -46,7 +46,7 @@ namespace rubik
         (piece.coords);
         (piece.colors);
 
-        std::cout << piece << '\n';
+        // std::cout << piece << '\n';
 
         auto type = piece.get_type();
         (type == Piece::Type::CENTER);
@@ -65,9 +65,8 @@ namespace rubik
     TEST(syntax_core, cube_class)
     {
         Cube cube;
-        std::cout << cube << '\n';
-    }
-/*
+        // std::cout << cube << '\n';
+
         std::ifstream file("tests/cube_state_example.txt");
         auto example_cube = Cube::from_stream(file);
 
@@ -78,7 +77,5 @@ namespace rubik
         cube.find_piece({ 0, 1, 0 });
         cube.find_piece({ Color::GREEN, Color::RED, Color::WHITE });
     }
-
-    */
 
 } // namespace rubik
