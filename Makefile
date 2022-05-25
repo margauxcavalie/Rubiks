@@ -8,11 +8,7 @@ ARFLAGS ?= rcs
 
 OBJ = src/librubik/cube.o               \
       src/librubik/move.o               \
-      src/librubik/piece.o              \
-      src/librubik/solver/f2l.o         \
-      src/librubik/solver/oll.o         \
-      src/librubik/solver/pll.o         \
-      src/librubik/solver/parse-csv.o
+      src/librubik/piece.o              
 
 CLI_OBJ = src/main.o $(OBJ) $(SLIB)
 CLI_BIN = cli
